@@ -3,10 +3,11 @@ window.onload = () => {
 	myInput.onpaste = (e) => e.preventDefault();
 };
 const COMMANDS = {
-	help: 'Supported commands: <span class="code">about</span>, <span class="code">experience</span>, <span class="code">education</span>, <span class="code">skills</span>, <span class="code">acknowledges</span>, <span class="code">contact</span>, <span class="code">resume</span>',
+	help: 'Supported commands: <span class="code">about</span>, <span class="code">experience</span>, <span class="code">education</span>, <span class="code">skills</span>, <span class="code">contact</span>',
 	about: "Hello 👋<br>I'm Ansan Binoy. I'm a Information Security enthusiast, currently living in India.",
 	skills: '<span class="code">Skill:</span> Information security, Pen-Testing, Bug Hunting, Programming,..<br>',
 	experience: "None",
+	education: "Unknown",
 	contact:
 		"You can contact me on any of following links:<br><a href='https://t.me/ansanbinoy' class='success link'>Telegram</a>, <a href='https://www.instagram.com/ansanbinoy/' class='success link'>Instagram</a>, <a href='https://www.twitter.com/ansanbinoy/' class='success link'>Twitter</a>, <a href='mailto:mail@akashsebastian.com' class='success link'>Email</a>",
 };

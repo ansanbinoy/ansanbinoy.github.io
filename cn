@@ -1,0 +1,955 @@
+Execute the following commands:
+arp, ipconfig, hostname, netdiag, netstat, nslookup, pathping, ping route, tracert
+
+arp
+C:\Users\BCALABSYS12>arp
+ARP -s inet_addr eth_addr [if_addr]
+ARP -d inet_addr [if_addr]
+ARP -a [inet_addr] [-N if_addr] [-v]
+
+  -a            Displays current ARP entries by interrogating the current
+                protocol data.  If inet_addr is specified, the IP and Physical
+                addresses for only the specified computer are displayed.  If
+                more than one network interface uses ARP, entries for each ARP
+                table are displayed.
+  -g            Same as -a.
+  -v            Displays current ARP entries in verbose mode.  All invalid
+                entries and entries on the loop-back interface will be shown.
+    inet_addr     Specifies an internet address.
+  -N if_addr    Displays the ARP entries for the network interface specified
+                   by if_addr.
+  -d            Deletes the host specified by inet_addr. inet_addr may be
+                wildcarded with * to delete all hosts.
+  -s            Adds the host and associates the Internet address inet_addr
+                with the Physical address eth_addr.  The Physical address is
+                given as 6 hexadecimal bytes separated by hyphens. The entry
+                is permanent.
+  eth_addr      Specifies a physical address.
+  if_addr       If present, this specifies the Internet address of the
+                interface whose address translation table should be modified.
+                If not present, the first applicable interface will be used.
+Example:
+  > arp -s 157.55.85.212   00-aa-00-62-c6-09  .... Adds a static entry.
+  > arp -a    Displays the arp table.
+B. ipconfig: Displays all current TCP/IP network configuration values and refreshes Dynamic Host Configuration Protocol (DHCP) and Domain Name System (DNS) settings. Used without parameters, ipconfig displays Internet Protocol version 4 (IPv4) and IPv6 addresses, subnet mask, and default gateway for all adapters.
+C:\Users\BCALABSYS12>ipconfig
+Windows IP Configuration
+Ethernet adapter Ethernet:
+Connection-specific DNS Suffix  . : acharyahq.com
+ Link-local IPv6 Address . . . . . : fe80::e77c:bd5d:e232:8552%6
+IPv4 Address. . . . . . . . . . . : 192.168.34.202
+Subnet Mask . . . . . . . . . . . : 255.255.254.0
+ Default Gateway . . . . . . . . . : 192.168.34.5
+Unknown adapter Local Area Connection:
+Media State . . . . . . . . . . . : Media disconnected
+Connection-specific DNS Suffix. 
+
+C.  hostname: Displays the name of the current host system. Only users with root user authority can set the host name.
+C:\Users\BCALABSYS12>hostname
+BCA-CL1-PC10
+D. netdiag: The Netdiag command-line diagnostic tool helps to isolate networking and connectivity problems by performing a series of tests to determine the state of your network client.
+
+E. netstat : Displays the contents of various network-related data structures for active connections. This netstat function shows the state of all configured interfaces. 
+C:\Users\BCALABSYS12>netstat
+Active Connections
+ Proto  Local Address          Foreign Address        State
+TCP    127.0.0.1:49669        BCA-CL1-PC10:49670         ESTABLISHED
+ TCP    127.0.0.1:49670        BCA-CL1-PC10:49669         ESTABLISHED
+ TCP    192.168.34.202:5357    bca-cl2-pc09:49757           TIME_WAIT
+  TCP    192.168.34.202:5357    BCA-CL2-PC02:49237      TIME_WAIT
+  TCP    192.168.34.202:7680    bca-cl2-pc03:50379            TIME_WAIT
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54382     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54384     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54387     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54390     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54393     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54395     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54397     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54399     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54401     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54403     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54405     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54432     TIME_WAIT
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54434     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54436     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54437     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54438     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54440     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54448     ESTABLISHED
+  TCP    192.168.34.202:20080   BCA-CL1-PC10:54479     ESTABLISHED
+F. nslookup: The nslookup command queries internet domain name servers in two modes. Interactive mode allows you to query name servers for information about various hosts and domains, or to print a list of the hosts in a domain. In non-interactive mode, the names and requested information are printed for a specified host or domain.
+C:\Users\BCALABSYS12>nslookup
+Default Server:  dcserver.acharyahq.com
+Address:  192.168.0.12
+G. Pathping: The pathping command is a command-line utility tool in Windows operating systems. It is commonly used to troubleshoot network issues, particularly the ones related to latency and network performance. It is considered an alternative to tracert and it combines ping and tracert commands. 
+C:\Users\BCALABSYS12>pathping
+Usage: pathping [-g host-list] [-h maximum_hops] [-i address] [-n] [-p period] [-q num_queries] [-w timeout [-4] [-6] target_name
+Options:
+  -g host-list     Loose source route along host-list.
+    -h maximum_hops  Maximum number of hops to search for target.
+    -i address       Use the specified source address.
+    -n               Do not resolve addresses to hostnames.
+    -p period        Wait period milliseconds between pings.
+    -q num_queries   Number of queries per hop.
+    -w timeout       Wait timeout milliseconds for each reply.
+    -4               Force using IPv4.
+    -6               Force using IPv6.
+I. Tracert: The tracert command is a Command Prompt command that's used to show several details about the path that a packet takes from the computer or device you're on to whatever destination you specify.
+C:\Users\BCALABSYS12>tracert
+Usage: tracert [-d] [-h maximum_hops] [-j host-list] [-w timeout]
+           [-R] [-S srcaddr] [-4] [-6] target_name
+Options:
+    -d                 Do not resolve addresses to hostnames.
+    -h maximum_hops    Maximum number of hops to search for target.
+    -j host-list       Loose source route along host-list (IPv4-only).
+    -w timeout         Wait timeout milliseconds for each reply.
+    -R                 Trace round-trip path (IPv6-only).
+    -S srcaddr         Source address to use (IPv6-only).
+    -4                 Force using IPv4.
+    -6                 Force using IPv6.
+
+Study of different network cables
+Networking cables are a type of networking hardware used to connect a network device to one or more other network devices, or to connect two or more devices to a single computer or network device.
+Network cables act as a medium through which information and data travel from one network device to another. The type of cable used for a network depends on the network’s topology, size, and procedure. The different types of network cables act as the supporting basis of the network infrastructure.
+A)Coaxial Cable
+
+
+
+
+Coaxial cables have a single copper conductor at the center, while a plastic layer provides insulation between the center conductor and braided metal shield. 
+The metal shield blocks outside interference from fluorescent lights, motors, and other computers.
+Coaxial cabling is highly resistant to signal obstruction, although it can be complex to install. 
+It can handle greater cable lengths between network devices than twisted pair cables. The two types of coaxial cables are thick coaxial and thin coaxial.
+B)Fiber Optic Cable
+
+
+
+
+
+
+
+Fiber optic cables possess a center glass core surrounded by multiple layers of protective materials.
+ They avoid electrical obstruction by transmitting light instead of electronic signals, making them perfect for environments with large amounts of electrical interference.
+Fiber optic cables have become the standard for connecting networks across buildings because of their resistance to moisture and lighting.
+C)Shielded Twisted Pair (STP) Cable
+
+
+
+
+
+
+The twisted conductors are shielded by a copper braid covering or a foil shield to reduce noiseinterference
+loe-cos medium and support data rats up to several Mbps
+Twisted pairs can also used for either analog or digital transmission
+The band width supported by the wire depends on thethickness of the wire and distance to be revealed by a signal on it.  
+Shielded twisted pair cables can also help to expand the distance between the cables.
+Unshielded Twisted Pair (UTP) Cable
+
+
+
+
+
+
+
+
+This cable sensual less class talk and a higher quality of signal over long a distances therefore these cables are popularly used for high speed computer communication
+ The wires are not shielded and can support your data that of several MBPS 
+Used in applications like analogue and digital technology that is LAN  etc 
+Noise and electromagnetic interference are high
+3.Practically implement the cross-wired cable and straight wired cable using crimping tool
+When someone says “ethernet” they are usually referring to standard ethernet patch cords. A standard patch cord is the most common type of ethernet and used for connecting different devices together. However, standard patch cords (also called straight-thru cords) can only connect different devices. If you need to connect a computer to something different like a modem or printer, they work fine. But if you need to connect two computers, two network switches, or any other identical electronics, you will need a crossover cable instead.
+To Implement Crossed Wired Cable:
+To connect two computers, two network switches, or any other identical electronics, you will need a crossover cable instead.
+To understand the difference, we start by looking at the way ethernet cables are wired. Each cable has eight smaller wires called conductors on the inside. 
+There are different ways to line up the conductors with the pins on RJ45 connectors, but the industry standard is T-568A and T-568B.
+Most cables manufactured today use the T-568B version, but some older cables with the T-568A version are still around. 
+
+
+Figure 3.1
+To implement Straight Through cable : 
+Standard patch cords (also called straight-thru cords) are used to connect different devices like PC to router or router to switch and so on. 
+A straight-thru cable will use the same wiring scheme on both sides of the cable to send and receive data. 
+
+Figure 3.1
+
+
+
+
+4.Study of Network IP Address configuration:(Classification of address , static and dynamic address)
+Classification IP address:
+TCP / IP defines 5 classes of IP addresses class A,B,C,D andE.Eeach class has a range of valid IP addresses the value of first octed determines the class IP address from the first three classe( A B and C) can be used for hot host addresses. The other two classes are used for other purposes class D formatting class and class E for experimental purposes.
+For the IP addresses from Class A, the first 8 bits (the first decimal number) represent the network part, while the remaining 24 hits represent the host part. For Class B, the first 16 bits (the first two numbers) represent the network part, while the remaining 16 bits represent the host part. For Class C. the first 24 bits represent the network part, while the remaining 8 bits represent the host part
+Class
+First Octet Vlaue
+Subnet Mask
+Number of networks
+Number of hosts
+
+Class A
+0-127
+255.0.0.0
+27=128 network addresses
+224-2 = 16,777,214 hosts
+
+Class B
+128-191
+255.255.0.0
+214=16684 network addresses
+216-2= 65564 hosts
+
+Class C
+192-223
+255.255.255.0
+221=2097152 networks
+28-2=254 hosts
+
+Class D
+224-239
+Not defined
+NA
+NA
+
+Class E
+240-255
+Not defined
+NA
+NA
+
+
+Examples: Consider the following IP addresses:
+10.55.125.70: This is a Class A address, the first number (10) represents the network part while the remainder of the address represents the host part (55.125.70). This means that, In order for devices to be on the same network, the first number of their IP addresses has to be the same for both devices. In this case, a device with the IP address of 10,37.9.2 is on the same network as the device with the IP address listed above. The device with the IP address 11.55.46.0 is not on the same network, because the first number of its IP address is different.
+The IP addresses are basically classified into two different types:
+1 Static IP Address: The IP address which stays same over time and doesn’t changes with each reboot is called static IP. As the IP is constant so it is less secure.
+Static IP addresses (also known as fixed or dedicated IP addresses), on the other hand, do not change. 
+Once a device has been assigned a static IP address, that number remains with the device as its internet identifier until the device is decommissioned or the network architecture is modified.
+ In most cases, devices that are given static IP addresses tend to be servers and other important equipment that require permanent addresses for other devices to reference.
+A static IP address is useful if we host a website from home, have a file server in our network, use networked printers, forward ports to a specific device, run a print server, or use a remote access program. 
+Because a static IP address never changes, other devices always know exactly how to contact a device that uses one.
+For example, if a static IP address is set up for a computer in a home network. 
+Once the computer has a specific address tied to it, a router can be set up to always forward certain inbound requests directly to that computer, such as FTP requests if the computer shares files over FTP.
+2. Dynamic IP Address: The  IP address which changes over time and changes with each reboot or refresh is called dynamic IP. It is more secured than static IP.
+The opposite of a never-changing static IP address is an ever-changing dynamic IP address.
+ A dynamic IP address is a regular address like a static IP is, but it's not permanently tied to a device. Instead, dynamic IP addresses are used for a specific amount of time and then returned an address pool so that other devices can use them. 
+Most devices use dynamic IP addresses, which are assigned by the network when they connect and change over time. 
+Most home networks are likely to have a dynamic IP address and the reason for this is because is cost effective for Internet Service Providers (ISP's) to allocate dynamic IP addresses to Instead of one IP address always being allocated to home network (Static IP). 
+IP address is palled from a pool of addresses and then assigned to home network by ISP. 
+After a few days, weeks or sometimes months that IP address is put back into the pool and new IP address are assigned their customers.
+DHCP (Dynamic Host Configuration Protocol) is a protocol that provides quick, automatic, and central management for the distribution of IP addresses within a network. 
+It's also used to configure the subnet mask, default gateway, and DNS server information on the device
+5. Configuration of Network IP address configuration(IPV4 and IPV6,subnet,supernet)
+Computers do not understand the IP addresses in the standard numeric format as the computers understand the numbers in binary form only. The binary number can be either 1 or 0. The IPv4 consists of four sets, and these sets represent the octet. The bits in each octet represent a number.Each bit in an octet can be either 1 or 0. If the bit the 1, then the number it represents will count, and if the bit is 0, then the number it represents does not count.
+What is IPV4?
+An IPv4 address is a series of four eight-bit binary numbers separated by a decimal point. Although you may use any numbering system to represent a unique 32-bit number, most commonly you see IP addresses expressed in dot-decimal notation. 
+	4 OCTET
+
+
+
+Step1: First we find the binary number of 66
+128
+64
+32
+16
+8
+4
+2
+1
+
+0
+1
+0
+0
+0
+0
+1
+0
+
+
+Step 2: now we find the binary number of  94
+128
+64
+32
+16
+8
+4
+2
+1
+
+0
+1
+0
+1
+1
+1
+1
+0
+
+Step 3: The next number is 29.
+128
+64
+32
+16
+8
+4
+2
+1
+
+0
+1
+0
+0
+0
+0
+1
+0
+
+Step4: The last number is 13.
+128
+64
+32
+16
+8
+4
+2
+1
+
+0
+1
+0
+0
+0
+0
+1
+0
+
+
+What is IPv6?
+IPv4 produces 4 billion addresses, and the developers think that these addresses are enough, but they were wrong. IPv6 is the next generation of IP addresses. The main difference between IPv4 and IPv6 is the address size of IP addresses. The IPv4 is a 32-bit address, whereas IPv6 is a 128- bit hexadecimal address. IPv6 provides a large address space, and it contains a simple header as compared to IPv4.
+
+	16 octet
+
+
+Difference between IPV4 and IPV6
+
+IPV4                                                                                            IPV6
+
+Address length
+IPv4 is a 32-bit address.
+IPv6 is a 128-bit address.
+
+Fields
+IPv4 is a numeric address that consists of 4 fields which are separated by dot (.).
+IPv6 is an alphanumeric address that consists of 8 fields, which are separated by colon.
+
+Classes
+IPv4 has 5 different classes of IP address that includes Class A, Class B, Class C, Class D, and Class E.
+IPv6 does not contain classes of IP addresses.
+
+Number of IP address
+IPv4 has a limited number of IP addresses.
+IPv6 has a large number of IP addresses.
+
+VLSM
+It supports VLSM (Virtual Length Subnet Mask). Here, VLSM means that Ipv4 converts IP addresses into a subnet of different sizes.
+It does not support VLSM.
+
+Address configuration
+It supports manual and DHCP configuration.
+
+
+
+Study of network Devices
+Router: 
+Routers are networking devices operating at layer 3 or a network layer of the OSI model. 
+Routers are responsible for receiving, analysing, and forwarding data packets among the connected computer networks.
+ When a data packet arrives, the router inspects the destination address, consults its routing tables to decide the optimal route and then transfers the packet along this route.
+ 
+
+Hub:
+A hub is a physical layer networking device which is used to connect multiple devices in a network.
+ They are generally used to connect computers in a LAN.
+A hub has many ports in it. A computer which intends to be connected to the network is plugged in to one of these ports.
+ When a data frame arrives at a port, it is broadcast to every other port, without considering whether it is destined for a particular destination or not.
+
+Switches:
+A switch is a data link layer networking device which connects devices in a network and uses packet switching to send and receive data over the network.
+Like a hub, a switch also has many ports, to which computers are plugged in.
+However, when a data frame arrives at any port of a network switch, it examines the destination address and sends the frame to the corresponding device(s). 
+Thus, it supports both unicast and multicast communications.
+
+Differences between Hub and Switch:
+Hub
+Switch
+
+They operate in the physical layer of the OSI model.
+They operate in the data link layer of the OSI model.
+
+It is a non-intelligent network device that sends message to all ports.
+It is an intelligent network device that sends message to selected destination ports.
+
+It primarily broadcasts messages.
+It is supports unicast, multicast and broadcast.
+
+Transmission mode is half duplex.
+Transmission mode is full duplex.
+
+Collisions may occurs during setup of transmission when more than one computers place data simultaneously in the corresponding ports.
+Collisions do not occur since the communication is full duplex.
+
+They are passive devices, they don’t have any software associated with it.
+They are active devices, equipped with network software.
+
+They generally have fewer ports of 4/12.
+The number of ports is higher – 24/48.
+
+
+Bridge:
+Bridges are used to connect two subnetworks that use interchangeable protocols. It combines two LANs to form an extended LAN. The main difference between the bridge and repeater is that the bridge has a penetrating efficiency.
+Working of Bridges:
+A bridge accepts all the packets and amplifies all of them to the other side. 
+The bridges are intelligent devices that allow the passing of only selective packets from them.
+ A bridge only passes those packets addressed from a node in one network to another node in the other network.
+
+A bridge performs in the following aspect :
+A bridge receives all the packets or frame from both LAN (segment) A and B.
+A bridge builds a table of addresses from which it can identify that the packets are sent from which LAN (or segment) to which LAN.
+The bridge reads the send and discards all packets from LAN A sent to a computer on LAN A and that packets from LAN A send to a computer on LAN B are retransmitted to LAN B.
+The packets from LAN B are considered in the same method.
+
+9. How to share a folder on your  Windows Computer(Server) with other computers(clients) over the Network(LAN) 
+Step 1. Open File Explorer.
+Step 2. Navigate to the folder you want to share.
+Step 3. Right-click the folder and select the properties option.
+Step 4. Click the sharing tab.
+Step 5. Click the advanced sharing button.
+
+Step 6: Check the share this folder option.
+Step 7: Select the everyone object if you want to share the folder to everyone or add button
+to select specific users or group of users.
+ Step 8: Tick the permission boxes to assign users the permission to either read or read and write in the shared folder.
+Step 9: Select apply and then OK buttons.
+Step 10:  Now to test if the shared folder will be accessed over the network, you need to know the IP address of your PC (the computer containing the shared folder). To find the IP address of your computer, go to search and type the command “cmd” to launch the command prompt application and then type “ipconfig” in the command line prompt dialog as shown below:
+Step 11: On the same computer, Go to search and type in the command “run” to launch the run app and then type in:\\IP address(eg:\\192.168.1.103) as shown the dialog below:
+
+Step  12: Click OK to see the list of shared folders.
+7)How to configure and connect the computer in LAN ?
+Step 1: Connect a LAN cable to the PC's wired LAN port.
+
+Step 2: Click the Start button on the taskbar and then click Settings.
+
+Step 3: Click Network and Internet.
+
+Setp 4: In Status, click Network and Sharing Center.
+
+Step 5: Choose Change adapter settings at the upper left.
+
+Step 6: Right-click Ethernet and then choose Properties.
+
+Step 7: Select Internet Protocol Version 4 (TCP/IPv4), then click Properties.
+
+Step 8: Set up the IP to use, then click OK to save your settings.
+
+8) Block the website using Windows Defender Firewall in Windows 10 .
+Windows 10 has proven to be very efficient for filtering and blocking harmful applications from damaging computers. It’s also a great tool to rely on when using public networks.
+Step 1: Launch the Control Panel on your computer.
+
+Step 2: Select “Windows Defender Firewall” followed by “Advanced Settings” on the left-side pane.
+Step 3: Right-click on “Outbound Rules” from the menu on the left and select “New Rule.” 
+Step 4: When a new window pops up, select the “Custom” option followed by “Next.”
+
+Step 5: On the next window, select “All programs” and again select
+“Next.”
+
+Step 6: Select the ” These IP addresses ” option under “Which remote IP addresses does this rule apply to?”
+
+Step 7: Click on “Add” and enter the IP addresses you want to block. Then select “Next.”
+
+Step 8: Make sure to choose the “Block the connection” option and click on “Next.”
+
+Step 9: Choose whether the rule applies to Domain, Private, or Public. You can also select all three.
+
+Step 10: Select “Next,” add a name or description for this rule, and select “Finish” to complete the action.
+
+The IP addresses you blocked won’t be available via any browser.
+10. Sharing Printers over the network in Windows 10
+Step 1: Before you can share a printer, it must first be set up, connected, and powered on. Click Start > Settings > Devices, then open the Devices and Printers link. Right-click your printer, then click Printer properties.
+Step 2: Click Start > Settings > Devices, then open the Devices and Printers link. Right-click your printer, then click Printer properties.
+
+
+
+
+
+
+
+
+
+Step 3: Select the Sharing tab, then check the box to share your printer.
+
+
+Step 4: Users should consider that if you are sharing a printer with multiple devices running a mixture of Windows client architectures – 32 or 64 bit-you should enable the “Render print jobs on client computers” option. This will ensure other users can easily install the printer when connecting over the network.
+
+Step 5: Connect to a Windows 10 Shared Printer
+After setting up your shared printer, you can connect to it multiple ways. The first method is from within Devices and Printer. Click the Add Printer button, then click the link, The printer that I want isn’t listed. Choose the Select a shared printer by name radio box, browse to the printer on your network, and click open.
+
+You will be prompted to install the driver. Click Next to complete the installation of the printer.
+
+That’s it! The printer will now show up in Devices and printers as a local device.
+
+Another way you can connect to a shared network printer is from within File Explorer. Open the Network folder, browse the shared printer’s computer, right-click it, then click Connect.
+
+
+
+11. How to Turn a PC into a Wireless Hotspot and connect other devces.
+Step 1: In box 1odem , 1 adopter, 2 RJ connector, 1 Device / Laptop/Mobile.
+Step 2: Connect Modem to I/O  switch to WAN socket.
+Step 3: Grey RJ Connector  connect one end to LAN 1  in modem ,another end to CPU
+Step 4: Connect adaptor.
+Step 5:  After connection check  the indicators on modem.
+Step 6: Go to browser type TP link wifi net.
+Step 7: Set new password ,confirm password .
+Step 8: Letsgets state 1
+Step 9:  Select your time Zone , chaennai,Kolkata.Mumbai,New Dehli.
+Step 10: Select connection Type.
+Step 11: Click on Dynamic IP.
+Step 12: Observe the default MAC address .
+Step 13: Click Next.
+Step 14: Personalize wireless setting Network Host Name and Password.
+Step 15: SSID
+Step 16: Confirm setting andclick Next.
+Step 17: Configurations
+12. Configuration of switches.
+Switches are networking devices operating at layer 2 or a data link layer of the OSI model. They connect devices in a network and use packet switching to send, receive or forward data packets or data frames over the network.
+The Cisco switches are the versatile, reliable, flexible and powerful. In this Lab Program, We will perform the basic switch configuration using Cisco Packet Tracer.
+Step 1: Open Cisco Packet Tracer and select two switches(2960-24TT).
+Open Cisco Packet Tracer and choose guest login option in the bottom right corner. You will get window of Cisco Packet Tracer. Then click on Network devices and select  two (Switch 0 and Switch1) switches(2960-24TT)  from the switch option.
+Step 2: Connect to the device via console
+Go to the CLI tab and then connect to the console of the switch. You will get initial command prompt "Switch>"
+Type  "enable" and hit enter. You will get into priviliged EXEC mode("Switch#"). Now, get into Global Configuration Mode: 
+Step 3: Set up a hostname for the particular switch to distinguish it in  the network
+Switch# configure terminal
+Switch(config)#	
+Step  4: Configure an administration password (enable secret password)
+Access-switch1(config)# enable secret acharya1
+The above password will be used to enter into privileged EXEC mode. 
+Step 5: Assign ip address to the switch for management
+!Management IP is assigned to Vlan 1 by default
+access-switch1(config)# interface vlan 1
+Access-switch1(config-if)# ip address 10.1.1.200 255.255.255.0
+Access-switch1(config-if)# exit
+Access-switch1(config)#
+Step 6: Configure Layer2 VLANs and assign ports to them
+By default, all physical ports of the switch belong to the native VLAN1. In order to do the Layer 2 segmentation you need to create additional VLANs from the default VLAN1 and then assign physical ports to these new Vlans. Let's create two new vlans (VLAN2 and VLAN3) and assign two ports to each one.
+
+!First create the Layer2 VLANs on the switch
+Access-switch1(config)# vlan 2
+Access-switch1(config-vlan)# name TEACHERS
+Access-switch1(config-vlan)# exit
+
+Access-switch1(config)# vlan 3
+Access-switch1(config-vlan)# name STUDENTS
+Access-switch1(config-vlan)# exit
+!Now assign physical ports to each VLAN. Ports 1-2 are assigned to VLAN2 and ports 3-4 are assigned to VLAN3
+Access-switch1(config)# interface range fa 0/1-2
+Access-switch1(config-if-range)# switchport mode access
+Access-switch1(config-if-range)# switchport access vlan 2
+Access-switch1(config-if-range)# exit
+Access-switch1(config)# interface range fa 0/3-4
+Access-switch1(config-if-range)# switchport mode access
+Access-switch1(config-if-range)# switchport access vlan 3
+Access-switch1(config-if-range)# exit
+Step 7: Save the configuration 
+Access-switch1(config)# exit
+Access-switch1# wr
+The above command to save the configuration can also be accomplished with copy run start.
+The above are the some steps that can be followed for basic set-up of a Cisco switch. Of course there are more things to configure (such as SNMP servers, NTP, AAA, Layer3 Vlan routing etc) but those depends on the requirements of each particular network.
+Some useful "show" commands
+After configuring the basic steps above, let's see some useful commands to monitor your configuration or troubleshoot possible problems:
+Access-switch1# show run 
+(Displays current running configuration)
+Access-switch1# show interfaces
+Access-switch1# show vlan
+(Displays all vlan numbers, names , ports associated with each vlan etc)
+Access-switch1# show interface status
+(Displays status of the interfaces, speed , duplex,etc)
+Access-switch1# show mac address-table
+(Displays current MAC address table and which MAC address is learned on each interface)
+13. Configuration of I/O Box Fixing.
+Required Components:
+	a. Punching tool
+	b. I/O Box
+	c. Twisted Pair Cable
+	d. Crimping Tool/Cable stripping Tool
+Procedure:
+1. Choose I/O Box. It has a set code piece (Class A and Class B) on one side and four pins on the other (A and B)
+2. Collect Twisted pair cable remove outer layer using crimping tool or cable strippng tool 
+3. Next, you must separate the twisted pair wires and straighten them.
+4. Insert the  wires according to the color code B(One side four and another side four)
+5. We must punch wires and remove superfluous wires using the punching tool.
+6.Finally screw the cap on.
+  		
+	Punching Tool	Twisted Pair cable
+
+
+crimping tool
+	I/O Box
+14. Making your own patch cord
+Step 1:
+This procedure generally applies to Cat 5 RJ45 connectors. An alternate method is given for connectors utilizing a “load bar”
+Step 2:
+Cut the cable to the length needed.If you plan to use snagless boots,  this would be a good  time to slide them on. Be sure the boots willbw facing “out” towards the connector.
+Step 3: 
+Strip back the cable jacket approximately 1 inch. Use the sutter provided with the crimping tool or strip by hand. Be careful not tonick the individual wires. Un-twist each of the 4 pairs and straighten each wire s much as possible between the fingers. 
+
+
+
+
+
+
+
+
+
+Step 4
+Use the 568-B wiring scheme on both ends for a standard patch cable.
+
+
+
+
+
+
+
+Step 5:
+Bring all of the wires together as closely as possible.
+Hold the grouped (and sorted) wires together tightly between the thumb, and the forefinger.
+Cut all of the wires at a perfect 90 degree angle from the cable,
+1/2 inch from the end of the cable jacket.
+Use a sharp cutting tool so as not to "squash" the wire ends.
+
+
+
+
+
+
+
+Step 6:
+With the connector pins facing up, carefully insert the wires into the connector.
+Apply a moderate amount of force in order to properly seat the wires against the contacts in the connector.
+Alternate for "load bar" Type Connectors
+A. Note that the loadbar has slots on one side with a flanged edge on one end.
+The sloted side should face the pins inside the connector.
+The wires are inserted into the flanged end.
+B. Hold the grouped (and sorted) wires together tightly, between the thumb, and forefinger.
+Cut all of the wires at a sharp angle from the cable.
+Use a sharp cutting tool so as not to "squash" the wire ends.
+
+
+
+
+
+C.Hold the load bar so the staggered holes face toward the cable.
+Insert the wires through the load bar, one at a time, carefully observing the orientation.
+Slide the load bar as far down as possible.
+
+
+
+
+D. Cut off the excess wire ends with a straight cut about 0.25" past the load bar.
+With the connector pins facing up, slide the load bar assembly into the connector.
+Insure that the wires are firmly seated to the end of the connector.
+The brown pair wires should be on the right side.
+
+
+
+
+
+
+
+Step 7:
+Observe the tip of the connector to confirm that all the wires are fully inserted.
+The end of each wire you should be in full view.
+There should be enough of the cable jacket inside the connector to crimp against.
+Note: Slide the load bar forward as necessary to provide the ideal placement.
+
+
+
+
+Step 8:
+Place the connector into the crimp tool, and squeeze hard so that the handle reaches its full swing.
+
+
+
+
+Step 9:
+Repeat the process on the other end using the desired wiring scheme.
+Be sure to slide the snagless boots snugly over the connectors when finished.
+Step 10:
+Always use a cable tester to check for continuity, opens and shorts.
+Cable Testers
+Step 11:
+Building patch cables takes practice so keep at it until you master your technique!
+
+15. Configuration of VLAN using Packet Tracer / GNS3
+Virtual LAN (VLAN) is a concept in which we can divide the devices logically on layer 2 (data link layer). Generally , layer 3 devices divide broadcast domain but broadcast domain can be divided by switches using the concept of VLAN.
+A broadcast domain is a network segment in which if a device broadcast a packet then all the devices in the same broadcast domain will receive it.To forward out the broadcast packets to different VLAN(from one VLAN to another) or broadcast domain, inter VLAN routing is needed.Through Vlan, different small sized sub-networks are created which are comparatively easy to handle.
+
+VLAN Ranges:
+
+1. VLAN 1: It is the default VLAN of switches.By default, all switchports are in VLAN.
+2. VLAN 2-1001: This is a normal VLAN range. We can create, edit and delete these VLAN.
+
+Types of connections in VLAN:
+There are three ways to connect devices on a VLAN, the type of connections are based on the connected devices.
+Trunk Link  - all connected devices to a trunk link must be VLAN-aware. All frames on this should have a special header attached to it called tagged frames.
+Acess Link – It connects VLAN-unaware devices to a VLAN- aware bridge.All frames on the access link must be untagged.
+Hybrid Link – It is a combination of the Trunk link and Access link.
+
+Advantages of using VLAN: 
+Formation of virtual groups
+Better Performance
+Security
+Flexibility
+Cost Reduction
+Disadvantages of VLAN: 
+     1.Complexity
+     2. Limited Scalability
+     3. Limited mobility
+
+Real-Time Applications of VLAN:
+Voice over IP(VoIP)
+Video Conferencing
+Remote Access
+Gaming
+In this lab program, We will see how to configure a VLAN using Cisco Packet Tracer and understand the working of a VLAN in a computer  network.The steps involved are as follows:-
+STEP 1: Open the Cisco Packet Tracer and select two Switches (Switch0 and Switch1) 
+
+Firstly, We select two switches(2960-24TT) namely Switch 0 and Switch 1 and connect them with the universal cable as shown in the figure below:
+
+
+STEP 2: Check the VLANs created for the particular switch
+Click on the switch and go to CLI tab. On the first line, you will see "Switch>". Give command "enable" to enable that switch and give another command "show vlan " , you will see all the vlans created on that particular switch. 
+You will see one default vlan which is vlan 1 with all switchports assigned to it and  few other vlans which are active but without having any switchports assigsned to them.
+STEP 3: Create two new VLANs (vlan 2 and vlan 3) in both of the switches 
+
+
+
+
+
+We enter into the global configuration mode by using command "configure terminal". Now, 
+
+first we will create a vlan 2 with name STUDENTS and vlan 3 with name FACULTIES in both of the switches.
+
+
+
+
+
+
+
+
+Step  4: Take four end devices and connect 2/2 of them to each switch
+We  select two PCs(PC0 and PC1) and two servers (Server0 and Server1) as the end devices and connect them to switches using universal cable. And also group together PC0 and Server0 in vlan 2 and PC1 and Server1 in vlan 3.
+
+
+
+
+
+
+
+
+
+Step 5: Assign necessary switchports to the VLANs 
+Choose the interface FastEthernet0/2 for both the switches and made switchport to access vlan 2 (STUDENTS). Also select the interface fastethernet0/3 for both the switches and made switchport to access vlan 3 (FACULTIES). Now we have separated two vlans (vlan 2 and vlan 3) from each other and each of them consists of one PC and one Server.
+
+
+
+  
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+Step 6: Enable switchport mode trunk for both the switches.
+Step 7: Assign IP addresses to each of the end devices in both the VLANs
+We assign different IP addresses for all the devices in the VLANs and take the default subnet mask for each of them.
+
+
+
+
+
+
+
+
+
+
+Step 8:  Check the VLAN configuration by using "ping" command in command prompt of end devices
+If the configuration of the VLANs is correct , then we should be able to ping the IP address of one device from the another device within the same VLAN . But we cannot 
+ping the ip address of devices in different VLANs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16. Configuration of VPN using Packet Tracer / GNS3
+What is a VPN?
+A VPN is a secure connection that can be made between a computer (such as a user's computer at home or on the road) and a protected or private corporate network (such as Lehigh's campus network), using an otherwise  insecure public network (such as the Internet). Data that is passed over the public network is encapsulated (wrapped up) and encrypted (translated into a secret code) so that it can't be intercepted or tampered with. Passing data through a network without letting the network actually see the data like this is a process known as tunneling. In effect, the connection works just as if the computer were connected to the protected network by its own private wire with a point-to-point direct connection. Thus the name VPN, which stands for virtual private network.
+
+
+VPN also ensures security by providing an encrypted tunnel between client and VPN server.
+VPN is used to bypass many blocked sites.
+VPN facilitates Anonymous browsing by hiding your ip address.
+Also, most appropriate Search engine optimization(SEO) is done by analyzing the data from VPN providers which provide country-wise stats of browsing a particular product. This method of SEO is used widely my many internet marketing managers to form new strategies.
+
+
+
+
+
+
+
+In this lab program, We will see how to configure a VPN using Cisco Packet Tracer and understand the working of a VPN in a computer  network.The steps involved are as follows:-
+STEP 1: Open the Cisco Packet Tracer and select four PCs , two Switches(2960-24TT) and four Routers(2811 series)
+
+Firstly, We take four PCs namely PC0, PC1, PC2 and PC3 as end devices. Two switches namely Switch0 and Switch1 are also taken. And finally we take four Routers namely Router0,Router1,Router2 and Router3. Place all this devices as shown in the figure below:
+
+
+
+
+
+
+
+
+STEP 2: Connect all the devices  with Universal Cable.
+Choose universal cable and connect first two PCs (PC0 and PC1) to Switch0. Also connect another two PCs (PC1 and PC2) to Switch1. Again take the same cable to connect Switches with the routers and the routers among them selves also get connected.
+
+
+
+
+
+
+
+
+Step 3: Label all the devices with the respective ip addresses and also indicate the ip address of particular network of devices
+We choose ip addresses of 10.0.0.1 and 10.0.0.2 for PC0 and PC1 respectively which are in network 10.0.0.0. The default gateway for this network is 10.0.0.3. Similarly, We choose ip addresses of 20.0.0.1 and 20.0.0.2 for PC2 and PC3 respectively which are in another network 20.0.0.0. The default gateway for this network is 20.0.0.3. The ip address for Router0 is 60.0.0.1 and the end point of the cable starting from Router 0 has ip address of 60.0.0.2 and this network of two routers is of 60.0.0.0.Similarly, The ip address for Router1 is 70.0.0.1 and the end point of the cable starting from Router 1 has ip address of 70.0.0.2 and this network of two routers is of 70.0.0.0. Again The ip address for Router2 is 80.0.0.1 and the end point of the cable starting from Router2 has ip address of 80.0.0.2 and this network of two routers is of 80.0.0.0. And the ip address of Router3 is same as the default gateway 20.0.0.3. The labelling is as below:
+
+
+
+
+
+
+
+Step 4: Assign  ip addresses and default gateway to four PCs as labelled
+Click on the PCs and select  IPConfiguration from the desktop tab and type the ip addresses and default gateway for all four PCs as mentioned in their respective labels. 
+
+
+
+
+
+
+
+
+Step 5: Configure all the routers with their own ip addresses for both FastEthernet0/0 and FastEthernet0/1 cables and also configure Routing Information Protocol(RIP) for each of the routers
+Before processing further let's learn about RIP. Routing Information Protocol(RIP) is a dynamic routing protocol that uses hop count(number of routers occuring in between the source and destination network) as a routing metric to find the best path between the source and the destination network. 
+In this step we first give respective ip addresses to all the fastethernet interfaces of each router starting from 10.0.0.3 for the Router0's fa0/0 t0 20.0.0.3 for the Router3's fa0/1. Each time it is necessary to turn on port status while assigning ip addresses to each of the interfaces of routers.
+For RIP configuration of routers, we have to add both source and destination 
+address of that particular network of two devices. Consider the images below for the references: (do similar tasks for all the routers)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 6: Check if the configuration of  all the routers is done correctly or not
+If you see these green points in every cable connecting the two devices , then it indicates that the configuration of all the routers is done correctly.
+
+
+
+
+
+
+
+
+
+
+
+
+Step 7:  Try sending messages from one device to another either one PC to another PC or PC to one of the Router. And use the the "tracert" in command prompt of any of the PCs to display the routes involved in transmission from one device to another.
+See if the transmission of message results into successfull or fail. Also observe that by using command "tracert" we get all the routes that should be followed to reach to the destination address from the source device.
+
+
+
+
+
+
+
+Step 8: Make a tunnel to demonstrate the use of VPN and label with an ip address to two end of the tunnel.
+Select a rectangle with no fill and take another rectangle with bluish color to place inside the first rectangle.This is to visualize a tunnel.
+The main use of VPN is to bypass one or more routers in a communication path so that the we can directly reach to the destination address without making use of underlying routes. The tunnel looks like below image:
+Step 9: Configure the VPN by adding tunnel ip address and source as well as destination addresses
+We choose Router0 and Router3 for establishing the communication so we will bypass Router1 and Router2. First configure the tunnel 0 for Router 0 and Then For the Router3 . The commands used in configuration for the routers are shown in the figures below:-
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 10: Check the VPN configuration by routing from one end of the tunnel to another.
+When we use the command "tracert 192.168.1.2" , it successfully bypasses all  other routers in the communication path and reaches to the destination directly. This proves that the VPN configuration done by us is correctly working. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+

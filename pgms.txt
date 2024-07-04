@@ -1,0 +1,245 @@
+#Program 5
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler, Normalizer
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create the initial DataFrame
+df1 = pd.DataFrame({
+    'speed': [10, 20, 36, 46, 56],
+    'distance': [1200, 1500, 3500, 4600, 8000]
+})
+print(df1)
+
+# Plot a bar chart
+plt.figure(figsize=(8, 5))
+plt.bar(df1['speed'], df1['distance'])
+plt.title('Speed vs Distance Bar Chart')
+plt.xlabel('Speed')
+plt.ylabel('Distance')
+plt.show()
+
+# Standard Scaler
+ss = StandardScaler()
+sdata = ss.fit_transform(df1)
+df2 = pd.DataFrame(sdata, columns=df1.columns)
+print(df2)
+
+plt.figure(figsize=(8, 5))
+sns.lineplot(data=df2, x='speed', y='distance')
+plt.title('Standard Scaler Plot')
+plt.xlabel('Speed')
+plt.ylabel('Distance')
+plt.show()
+
+# Min-Max Scaler
+mms = MinMaxScaler()
+mdata = mms.fit_transform(df1)
+df3 = pd.DataFrame(mdata, columns=df1.columns)
+print(df3)
+
+plt.figure(figsize=(8, 5))
+sns.lineplot(data=df3, x='speed', y='distance')
+plt.title('Min-Max Scaler Plot')
+plt.xlabel('Speed')
+plt.ylabel('Distance')
+plt.show()
+
+# Robust Scaler
+rs = RobustScaler()
+rdata = rs.fit_transform(df1)
+df4 = pd.DataFrame(rdata, columns=df1.columns)
+print(df4)
+
+# Modifying df4 for visualization
+df4.drop(columns=['distance'], inplace=True)
+df4['value'] = ['s1', 's2', 's3', 's4', 's5']
+print(df4)
+
+plt.figure(figsize=(8, 5))
+sns.barplot(data=df4, x='speed', y='value')
+plt.title('Robust Scaler Plot')
+plt.xlabel('Speed')
+plt.ylabel('Value')
+plt.show()
+
+# Normalizer
+nn = Normalizer()
+ndata = nn.fit_transform(df1)
+df5 = pd.DataFrame(ndata, columns=df1.columns)
+print(df5)
+
+plt.figure(figsize=(8, 5))
+sns.scatterplot(data=df5, x='speed', y='distance', marker='o')
+plt.title('Normalizer Plot')
+plt.xlabel('Speed')
+plt.ylabel('Distance')
+plt.show()
+=====================================================================================================================================
+#PROGRAM 6, 7, 8
+=====================================================================================================================================
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+
+# Load the dataset
+df = pd.read_csv('/content/cars.csv')
+
+# Display the dataframe
+print(df.head())
+print(df.columns)
+print(df.info())
+
+# Define numerical and categorical columns
+numerical_cols = ['Year', 'Kilometers Driven', 'Mileage', 'Engine', 'Power', 'Seats']
+categorical_cols = ['Brand', 'Model', 'Fuel_Type', 'Transmission', 'Owner_Type']
+
+# Create transformers for numerical and categorical data
+numerical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('encoder', LabelEncoder())  # LabelEncoder is typically not used in a pipeline like this; instead, use OneHotEncoder or OrdinalEncoder
+])
+
+# Create a preprocessor
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numerical_transformer, numerical_cols),
+        ('cat', 'passthrough', categorical_cols)  # Pass categorical columns directly as we handle them separately
+    ])
+
+# Apply transformations to numerical data
+df_num = df[numerical_cols].copy()
+df_num_transformed = numerical_transformer.fit_transform(df_num)
+df_num_transformed = pd.DataFrame(df_num_transformed, columns=numerical_cols)
+
+# Apply transformations to categorical data
+df_cat = df[categorical_cols].copy()
+for col in categorical_cols:
+    df_cat[col] = LabelEncoder().fit_transform(df_cat[col])
+df_cat_transformed = df_cat.copy()
+
+# Combine transformed numerical and categorical data
+df_transformed = pd.concat([df_num_transformed, df_cat_transformed], axis=1)
+
+# Display the transformed dataframe
+print(df_transformed.head())
+
+# Define the features and target variable
+X = df_transformed
+y = df['Price']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Display the lengths of the training and testing sets
+print(f'Length of X_train: {len(X_train)}')
+print(f'Length of y_train: {len(y_train)}')
+print(f'Length of X_test: {len(X_test)}')
+print(f'Length of y_test: {len(y_test)}')
+
+=====================================================================================================================================
+#PROGRAM 9
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from sklearn import tree
+
+# Load the dataset
+df = pd.read_csv("/content/salaries.csv")
+print(df.head())
+
+# Separate features and target
+inputs = df.drop('salary_more_then_100k', axis='columns')
+target = df['salary_more_then_100k']
+
+# Encode categorical features
+le_company = LabelEncoder()
+le_job = LabelEncoder()
+le_degree = LabelEncoder()
+
+inputs['company'] = le_company.fit_transform(inputs['company'])
+inputs['job'] = le_job.fit_transform(inputs['job'])
+inputs['degree'] = le_degree.fit_transform(inputs['degree'])
+
+print(inputs)
+
+# Create and train the Decision Tree model
+model = tree.DecisionTreeClassifier()
+model.fit(inputs, target)
+
+# Check the accuracy of the model
+accuracy = model.score(inputs, target)
+print(f'Accuracy: {accuracy}')
+
+# Visualize the decision tree
+plt.figure(figsize=(20,10))
+tree.plot_tree(model, feature_names=inputs.columns, class_names=['No', 'Yes'], filled=True)
+plt.show()
+
+
+=====================================================================================================================================
+
+# program 10
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
+
+# Read the dataset
+df = pd.read_csv("/content/income.csv")
+print(df.head())
+
+# Plot the initial data
+plt.scatter(df.Age, df["Income($)"])
+plt.xlabel("Age")
+plt.ylabel("Income($)")
+plt.show()
+
+# Scale the data
+scaler = MinMaxScaler()
+df['Income($)'] = scaler.fit_transform(df[['Income($)']])
+df['Age'] = scaler.fit_transform(df[['Age']])
+
+# Fit the KMeans model
+km = KMeans(n_clusters=3)
+y_predicted = km.fit_predict(df[['Age', 'Income($)']])
+df['cluster'] = y_predicted
+
+print(df.head())
+
+# Plot the clusters
+df1 = df[df.cluster == 0]
+df2 = df[df.cluster == 1]
+df3 = df[df.cluster == 2]
+
+plt.scatter(df1.Age, df1['Income($)'], color='green')
+plt.scatter(df2.Age, df2['Income($)'], color='red')
+plt.scatter(df3.Age, df3['Income($)'], color='black')
+plt.scatter(km.cluster_centers_[:, 0], km.cluster_centers_[:, 1], color='purple', marker='*', label='centroid')
+plt.xlabel("Age")
+plt.ylabel("Income($)")
+plt.legend()
+plt.show()
+
+# Elbow plot to find the optimal number of clusters
+sse = []
+k_rng = range(1, 10)
+for k in k_rng:
+    km = KMeans(n_clusters=k)
+    km.fit(df[['Age', 'Income($)']])
+    sse.append(km.inertia_)
+
+plt.xlabel('K')
+plt.ylabel('Sum of squared error')
+plt.plot(k_rng, sse)
+plt.show()
